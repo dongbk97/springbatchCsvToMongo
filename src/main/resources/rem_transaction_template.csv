@@ -1,0 +1,3 @@
+"cust_id_sender","msisdn_sender","msisdn_receiver","alias_receiver_name","to_account","transfer_content","viettel_bank_code_receiver","viettel_bank_code_sender","account_name","transfer_amount","trans_type_code","pin_flg","pin_time","delete_flg","create_date","create_by","update_date","update_by","source_infra_id","cust_id_mobile"
+"123456","987654321","0123456789","John Doe","9876543210","Payment for services","ABC123","DEF456","Jane Smith",1000.00,"CT SĐT",1,"2023-06-22",0,"2023-06-22","John","2023-06-22","Jane","12345","78901234"
+"789012","0123456789","987654321","Jane Smith","0123456789","Product purchase","DEF456","ABC123","John Doe",500.00,"STK",0,"2023-06-21",0,"2023-06-21","Jane","2023-06-21","John","67890","43210987"
