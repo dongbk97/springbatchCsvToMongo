@@ -37,9 +37,6 @@ public class MongoConfig {
     private String replica;
 
 
-//    @Value("${spring.data.mongodb.uri}")
-//    private String url;
-
     @Bean(name = "primaryProperties")
     @ConfigurationProperties(prefix = "mongodb.primary")
     @Primary
@@ -72,49 +69,25 @@ public class MongoConfig {
 
         MongoClientImpl mongoClient = new MongoClientImpl(mongoClientSettings, mongoDriverInformation);
 
-
-
-        ClientSessionOptions sessionOptions = ClientSessionOptions.builder()
-                .defaultTransactionOptions(TransactionOptions.builder()
-                        .readConcern(ReadConcern.LOCAL)
-                        .readPreference(ReadPreference.primaryPreferred())
-                        .build())
-                .build();
-
-        // Tạo ClientSession
-        ClientSession clientSession = mongoClient.startSession(sessionOptions);
-
-
-
-
-
-
-//        mongoClient.startSession(sessionOptions);
-
+//
+//
+//        ClientSessionOptions sessionOptions = ClientSessionOptions.builder()
+//                .defaultTransactionOptions(TransactionOptions.builder()
+//                        .readConcern(ReadConcern.LOCAL)
+//                        .readPreference(ReadPreference.primaryPreferred())
+//                        .build())
+//                .build();
 
         return mongoClient;
 
 
     }
 
-
-//    @Bean
-//    public ConnectionString connectionString() {
-//        return new ConnectionString(url);
-//    }
-
-
     @Primary
     @Bean(name = "primaryMongoDBFactory")
     public MongoDatabaseFactory mongoDatabaseFactory(@Qualifier("primaryMongoClient") MongoClient mongoClient, @Qualifier("primaryProperties") MongoProperties mongoProperties) {
         return new SimpleMongoClientDatabaseFactory(mongoClient, mongoProperties.getDatabase());
     }
-
-//    @Primary
-//    @Bean(name = "mongoTemplate")
-//    public MongoTemplate mongoTemplate(@Qualifier("primaryMongoDBFactory") MongoDatabaseFactory mongoDatabaseFactory) {
-//        return new MongoTemplate(mongoDatabaseFactory);
-//    }
 
     @Bean(name = "mongoTemplate")
     public MongoTemplate mongoTemplate(@Qualifier("primaryMongoDBFactory") MongoDatabaseFactory mongoDatabaseFactory) {

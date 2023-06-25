@@ -34,29 +34,10 @@ public class BatchConfig {
 	@Autowired
 	private MongoTemplate template;
 
-	//1. Item Reader from CSV file
-//	@Bean
-//	public ItemReader<Product> reader(){
-//		FlatFileItemReader<Product> reader=new FlatFileItemReader<Product>();
-//		//loading file
-//		reader.setResource(new ClassPathResource("myprods.csv"));
-//
-//		reader.setLineMapper(new DefaultLineMapper<Product>() {{
-//			setLineTokenizer(new DelimitedLineTokenizer() {{
-//					setNames("prodId","prodName","prodCost");
-//			}});
-//			setFieldSetMapper(new BeanWrapperFieldSetMapper<Product>() {{
-//				setTargetType(Product.class);
-//			}});
-//		}});
-//
-//
-//		return reader;
-//	}
 	@Bean
 	public FlatFileItemReader<TranstemplateEntity> itemReader() {
 		FlatFileItemReader<TranstemplateEntity> reader = new FlatFileItemReader<>();
-		reader.setResource(new ClassPathResource("rem_transaction_template.csv")); // Update the file path accordingly
+		reader.setResource(new ClassPathResource("rem_transaction_template.csv"));
 		reader.setLineMapper(lineMapper());
 		reader.setLinesToSkip(1); // Skip the header row in the CSV file
 		reader.open(new ExecutionContext());
